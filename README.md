@@ -8,6 +8,7 @@
 - [Project Lombok] (https://projectlombok.org/)
 - [Spring Boot] (https://spring.io/projects/spring-boot)
 - [Spring JPA] (https://projects.spring.io/spring-data-jpa/)
+- [PostgreSQL] (https://www.postgresql.org/)
 
 ## Features
 o Simple Sign In
