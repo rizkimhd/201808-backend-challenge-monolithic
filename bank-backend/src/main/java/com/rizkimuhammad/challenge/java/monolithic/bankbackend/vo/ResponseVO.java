@@ -7,8 +7,8 @@ import lombok.Data;
  */
 @Data
 public class ResponseVO {
-    protected String response;
-    protected String message;
+    private String response;
+    private String message;
     private String result;
 
     public ResponseVO() {
@@ -19,5 +19,13 @@ public class ResponseVO {
         this.response = String.valueOf(response);
         this.message = String.valueOf(message);
         this.result = String.valueOf(result);
+    }
+
+    public String toJSON() {
+        return "{\n" +
+                "\"response\": \""  + response + "\",\n" +
+                "\"message\": \"" + message + "\",\n" +
+                "\"result\": \"" + result + "\"\n" +
+                "}";
     }
 }

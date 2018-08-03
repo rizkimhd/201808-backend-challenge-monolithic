@@ -28,7 +28,7 @@
         <appender-ref ref="FILE" />
     </root>
 
-    <logger name="com.rizkimuhammad.challenge.java.monolithic.bankbackend.service" level="DEBUG" />
-    <logger name="com.rizkimuhammad.challenge.java.monolithic.bankbackend.util" level="TRACE" />
+    <!-- <logger name="com.rizkimuhammad.challenge.java.monolithic.bankbackend.service" level="DEBUG" />
+    <logger name="com.rizkimuhammad.challenge.java.monolithic.bankbackend.util" level="TRACE" /> -->
 
 </configuration>

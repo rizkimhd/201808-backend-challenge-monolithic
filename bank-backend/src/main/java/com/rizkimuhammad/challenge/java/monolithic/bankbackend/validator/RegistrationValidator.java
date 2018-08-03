@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 /**
  * Created by rizkimuhammad on 02/08/18.
  */
-//@Component
 public class RegistrationValidator {
 
     @Autowired

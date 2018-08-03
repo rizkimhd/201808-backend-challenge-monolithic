@@ -1,5 +1,6 @@
 package com.rizkimuhammad.challenge.java.monolithic.bankbackend.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -16,10 +17,13 @@ import java.io.IOException;
  */
 public class JWTAuthenticationFilter extends GenericFilterBean {
 
+    @Autowired
+    TokenAuthentication tokenAuthentication;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
-        Authentication authentication = new TokenAuthentication().getAuthentication((HttpServletRequest)request);
+        Authentication authentication = tokenAuthentication.getAuthentication((HttpServletRequest)request);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request,response);

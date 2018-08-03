@@ -1,6 +1,8 @@
 package com.rizkimuhammad.challenge.java.monolithic.bankbackend.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rizkimuhammad.challenge.java.monolithic.bankbackend.vo.LoginRequestVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,19 +20,21 @@ import java.io.IOException;
  */
 public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
+    @Autowired
     TokenAuthentication tokenAuthentication;
 
     public JWTLoginFilter(String url, AuthenticationManager authenticationManager) {
         super(new AntPathRequestMatcher(url));
         setAuthenticationManager(authenticationManager);
-        tokenAuthentication = new TokenAuthentication();
     }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest httpServletRequest,
                                                 HttpServletResponse httpServletResponse)
             throws AuthenticationException, IOException {
-        Credentials credentials = new ObjectMapper().readValue(httpServletRequest.getInputStream(), Credentials.class);
+        LoginRequestVO credentials = new ObjectMapper().readValue(
+                httpServletRequest.getInputStream(), LoginRequestVO.class);
+
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 credentials.getUsername(), credentials.getPassword());
         return getAuthenticationManager().authenticate(token);
@@ -38,7 +42,7 @@ public class JWTLoginFilter extends AbstractAuthenticationProcessingFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                            FilterChain chain, Authentication authentication) {
+                                            FilterChain chain, Authentication authentication) throws IOException {
         String name = authentication.getName();
         tokenAuthentication.addAuthentication(response, name);
     }

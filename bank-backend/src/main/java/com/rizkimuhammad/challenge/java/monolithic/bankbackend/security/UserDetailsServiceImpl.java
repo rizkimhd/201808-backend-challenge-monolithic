@@ -3,9 +3,10 @@ package com.rizkimuhammad.challenge.java.monolithic.bankbackend.security;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.persistence.domain.UserAccount;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.persistence.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,16 +24,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         if (userAccount == null) {
             throw new UsernameNotFoundException("UserAccount '" + s + "' not found");
+        } else {
+            return User.withUsername(s)
+                    .password(userAccount.getPassword())
+                    .authorities(userAccount.getRole())
+                    .disabled(userAccount.getDisabled())
+                    .build();
+//            return User.withUsername(s)
+//                    .password(userAccount.getPassword())
+//                    .authorities(userAccount.getRole())
+//                    .accountExpired(false)
+//                    .accountLocked(false)
+//                    .credentialsExpired(false)
+//                    .disabled(userAccount.getDisabled())
+//                    .build();
         }
 
-        return org.springframework.security.core.userdetails.User.withUsername(s)
-                .password(userAccount.getPassword())
-                .authorities(userAccount.getRole())
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(userAccount.getDisabled())
-                .build();
+
     }
 
 }
