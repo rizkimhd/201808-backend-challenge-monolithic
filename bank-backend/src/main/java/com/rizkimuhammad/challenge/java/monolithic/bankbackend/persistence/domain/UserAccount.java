@@ -37,7 +37,8 @@ public class UserAccount extends Base {
     @Column(name = "ROLE", length = 5)
     private Role role;
 
-    public UserAccount() { }
+    public UserAccount() {
+    }
 
     public UserAccount(String username, String fullName, String password, String email) {
         this.username = username;

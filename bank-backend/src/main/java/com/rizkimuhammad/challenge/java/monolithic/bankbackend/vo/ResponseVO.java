@@ -11,9 +11,7 @@ public class ResponseVO {
     private String message;
     private String result;
 
-    public ResponseVO() {
-
-    }
+    public ResponseVO() { }
 
     public ResponseVO(Object response, Object message, Object result) {
         this.response = String.valueOf(response);
@@ -21,11 +19,4 @@ public class ResponseVO {
         this.result = String.valueOf(result);
     }
 
-    public String toJSON() {
-        return "{\n" +
-                "\"response\": \""  + response + "\",\n" +
-                "\"message\": \"" + message + "\",\n" +
-                "\"result\": \"" + result + "\"\n" +
-                "}";
-    }
 }

@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class BankBackendApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BankBackendApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BankBackendApplication.class, args);
+    }
 
     @Bean
     public AuditorAware<String> getAuditorAware() {

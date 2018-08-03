@@ -2,8 +2,8 @@ package com.rizkimuhammad.challenge.java.monolithic.bankbackend.service;
 
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.persistence.domain.UserAccount;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.validator.RegistrationValidator;
-import com.rizkimuhammad.challenge.java.monolithic.bankbackend.vo.ResponseVO;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.vo.RegistrationRequestVO;
+import com.rizkimuhammad.challenge.java.monolithic.bankbackend.vo.ResponseVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

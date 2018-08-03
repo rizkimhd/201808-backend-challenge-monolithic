@@ -19,7 +19,8 @@ public class RegistrationValidator {
             return "Username cannot be empty";
         } else {
             if (registrationRequestVO.getUsername().length() > 20) return "Username cannot exceed 20 characters";
-            if (customerRepository.existsByUsername(registrationRequestVO.getUsername())) return "Username already exists";
+            if (customerRepository.existsByUsername(registrationRequestVO.getUsername()))
+                return "Username already exists";
         }
 
         if (StringUtils.isEmpty(registrationRequestVO.getEmail())) {

@@ -3,11 +3,13 @@ package com.rizkimuhammad.challenge.java.monolithic.bankbackend.validator;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.persistence.repository.UserAccountRepository;
 import com.rizkimuhammad.challenge.java.monolithic.bankbackend.vo.LoginRequestVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 /**
  * Created by rizkimuhammad on 02/08/18.
  */
+@Component
 public class LoginValidator {
 
     @Autowired
@@ -18,7 +20,6 @@ public class LoginValidator {
             return "Username cannot be empty";
         } else {
             if (loginRequestVO.getUsername().length() > 20) return "Username cannot exceed 20 characters";
-            if (customerRepository.existsByUsername(loginRequestVO.getUsername())) return "Username already exists";
         }
 
         if (StringUtils.isEmpty(loginRequestVO.getPassword())) {

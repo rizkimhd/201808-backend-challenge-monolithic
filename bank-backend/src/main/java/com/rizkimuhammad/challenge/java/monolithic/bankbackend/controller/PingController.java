@@ -18,8 +18,8 @@ public class PingController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseVO ping() {
-         return new ResponseVO(String.valueOf(HttpStatus.OK.value()), HttpStatus.OK.getReasonPhrase(),
-                 DateFormatUtils.format(new Date(), DateFormatUtils.ISO_DATE_FORMAT.getPattern()));
+        return new ResponseVO(String.valueOf(HttpStatus.OK.value()), HttpStatus.OK.getReasonPhrase(),
+                DateFormatUtils.format(new Date(), DateFormatUtils.ISO_DATE_FORMAT.getPattern()));
 
     }
 

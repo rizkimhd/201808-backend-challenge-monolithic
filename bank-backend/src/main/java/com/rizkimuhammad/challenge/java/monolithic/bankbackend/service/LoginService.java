@@ -39,7 +39,7 @@ public class LoginService extends LoginValidator {
         }
 
         UserAccount userAccount = userAccountRepository.findByUsername(loginRequestVO.getUsername());
-        if(!passwordEncoder.matches(userAccount.getPassword(), loginRequestVO.getPassword())) {
+        if (!passwordEncoder.matches(userAccount.getPassword(), loginRequestVO.getPassword())) {
             errMsg = "Invalid username and password";
             return new ResponseVO(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase(), errMsg);
         }
