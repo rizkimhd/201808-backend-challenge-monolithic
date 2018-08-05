@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "5c6976ec-a40d-4edb-a555-23373f160fe4",
+		"name": "Simple Bank Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "947c0fcb-bd2e-4259-bd4c-67b222c6c3c8",
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"dev00\",\n\t\"fullName\":\"developer 00\",\n\t\"email\":\"dev00@mailinator.com\",\n\t\"password\":\"Welcome1!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/registration/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"registration",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "f150fbcc-0e26-446f-be42-ddc1b6624d99",
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\" : \"dev00\",\n\t\"password\" : \"Welcome1!\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "679aad64-33e5-4b27-9ed2-6dec20fbfbbd",
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "bd7a4c97-bbe9-37ad-a000-c88e56dd3124"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\" : \"dev00\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "b1aae214-bd9f-4e93-b6be-a37c906748a5",
+			"name": "Deposit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "4d20f1fa-336c-3e9c-94a6-c4c68863ba49"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\" : 40000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/transaction/deposit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"transaction",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "207386c8-10b8-4ac5-b678-bef6297d08ef",
+			"name": "Withdrawal",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "4d20f1fa-336c-3e9c-94a6-c4c68863ba49"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"amount\" : 4000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/transaction/withdrawal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"transaction",
+						"withdrawal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "a1d6dbd3-4d96-4b8d-8630-d65a5d167b2f",
+			"name": "Transfer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "4d20f1fa-336c-3e9c-94a6-c4c68863ba49"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receiverAccount\" : \"1537604892\",\n\t\"receiverName\" :\"developer 02\",\n\t\"amount\" : 4000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/transaction/transfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"transaction",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "2d1ac5f6-6eb1-4814-8a73-85f032c746ff",
+			"name": "List of Transaction History",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "295bbd1b-201c-34ed-bf30-bf96080cdd14"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"receiverAccount\" : \"1537604892\",\n\t\"receiverName\" :\"developer 02\",\n\t\"amount\" : 4000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/api/transaction/list-of-transaction-history?from=1533380082000&to=1533493423000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"api",
+						"transaction",
+						"list-of-transaction-history"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "1533380082000"
+						},
+						{
+							"key": "to",
+							"value": "1533493423000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
