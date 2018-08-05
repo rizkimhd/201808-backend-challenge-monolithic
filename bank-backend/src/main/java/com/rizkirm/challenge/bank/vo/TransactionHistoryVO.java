@@ -25,10 +25,9 @@ public class TransactionHistoryVO {
 
     public TransactionHistoryVO(Date transactionTime, String receiverName, BigDecimal amount, String transactionType) {
         this.transactionTime = DateUtil.dateToString(transactionTime, DateUtil.YYYY_MM_DD_HHMMSS);
-        this.transactionTime = reformatType(transactionType);
+        this.transactionType = reformatType(transactionType);
         this.receiverName = receiverName;
         this.amount = amount;
-        this.transactionType = transactionType;
     }
 
     public static List<TransactionHistoryVO> constructList(List<TransactionHistory> transactionHistoryList) {
