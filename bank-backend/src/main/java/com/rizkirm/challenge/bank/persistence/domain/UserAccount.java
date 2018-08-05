@@ -6,7 +6,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 /**
  * Created by rizkimuhammad on 05/08/18.
@@ -45,7 +44,6 @@ public class UserAccount extends Base {
     public void prePersist() {
         super.prePersist();
         this.accountNumber = new GeneratorUtil().generate10RandomDigits();
-        this.accessToken = UUID.nameUUIDFromBytes(this.username.concat(this.getClass().getName()).getBytes()).toString();
     }
 
     public UserAccount() { }

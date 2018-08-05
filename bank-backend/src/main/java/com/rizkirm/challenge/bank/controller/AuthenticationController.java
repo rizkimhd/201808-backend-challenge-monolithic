@@ -26,7 +26,7 @@ public class AuthenticationController {
         AbstractRequestHandler handler = new AbstractRequestHandler() {
             @Override
             public Object processRequest() {
-                return authenticationService.logout(token, logoutRequestVO);
+                return authenticationService.doLogout(token, logoutRequestVO);
             }
         };
         return handler.getResult();
@@ -38,7 +38,7 @@ public class AuthenticationController {
         AbstractRequestHandler handler = new AbstractRequestHandler() {
             @Override
             public Object processRequest() {
-                return authenticationService.login(loginRequestVO);
+                return authenticationService.doLogin(loginRequestVO);
             }
         };
         return handler.getResult();

@@ -25,7 +25,7 @@ public class RegistrationController {
         AbstractRequestHandler handler = new AbstractRequestHandler() {
             @Override
             public Object processRequest() {
-                return registrationService.register(registrationRequestVO);
+                return registrationService.doRegistration(registrationRequestVO);
             }
         };
         return handler.getResult();

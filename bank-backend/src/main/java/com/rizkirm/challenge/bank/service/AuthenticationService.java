@@ -23,7 +23,7 @@ public class AuthenticationService extends AuthenticationValidator {
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
 
-    public LoginResponseVO login(LoginRequestVO loginRequestVO) {
+    public LoginResponseVO doLogin(LoginRequestVO loginRequestVO) {
 
         checkRequest(loginRequestVO);
 
@@ -43,7 +43,7 @@ public class AuthenticationService extends AuthenticationValidator {
         }
     }
 
-    public String logout(String token, LogoutRequestVO logoutRequestVO) {
+    public String doLogout(String token, LogoutRequestVO logoutRequestVO) {
         checkRequest(token, logoutRequestVO);
 
         UserAccount userAccount = userAccountRepository.findByAccessTokenAndUsernameAndDisabledFalse(

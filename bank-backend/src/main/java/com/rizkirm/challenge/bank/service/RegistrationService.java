@@ -24,7 +24,7 @@ public class RegistrationService extends RegistrationValidator {
     BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public RegistrationResponseVO register(RegistrationRequestVO registrationRequestVO) {
+    public RegistrationResponseVO doRegistration(RegistrationRequestVO registrationRequestVO) {
         checkRequest(registrationRequestVO);
 
         UserAccount userAccount = userAccountRepository.findByUsernameOrEmail(

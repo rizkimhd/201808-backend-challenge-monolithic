@@ -14,6 +14,7 @@ public class DateUtil {
 
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
     public final static String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
+    public static final String YYYY_MM_DD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
 
     public static String dateToString(Date date, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
