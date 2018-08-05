@@ -61,7 +61,7 @@ public abstract class AbstractRequestHandler {
             responseVO.setMessage(ConstantUtil.ResponseMessage.DATA_NOT_FOUND);
             responseVO.setResult(e.getMessage());
         } catch (CustomUnauthorizedException e) {
-            responseVO.setMessage(ConstantUtil.ResponseMessage.DATA_NOT_FOUND);
+            responseVO.setMessage(ConstantUtil.ResponseMessage.UNAUTHORIZED);
             responseVO.setResult(e.getMessage());
         }
 
