@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public abstract class AbstractRequestHandler {
 
-    public static ResponseEntity<ResponsePageVO> constructListResult(Map<String, Object> resultMap) {
+    public static ResponseEntity<ResponsePageVO> getPageResult(Map<String, Object> resultMap) {
         ResponsePageVO responsePageVO = new ResponsePageVO();
         responsePageVO.setTimestamp(new Date());
         try {

@@ -70,7 +70,7 @@ public class TransactionController {
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "limit", defaultValue = "15") Integer limit) {
         Map<String, Object> pageMap = transactionService.getTransactionHistory(token, page, limit);
-        return AbstractRequestHandler.constructListResult(pageMap);
+        return AbstractRequestHandler.getPageResult(pageMap);
     }
 
 }
