@@ -45,17 +45,17 @@ public class UserAccount extends Base {
     public void prePersist() {
         super.prePersist();
         this.accountNumber = new GeneratorUtil().generate10RandomDigits();
-        this.balance = BigDecimal.ZERO;
         this.accessToken = UUID.nameUUIDFromBytes(this.username.concat(this.getClass().getName()).getBytes()).toString();
     }
 
     public UserAccount() { }
 
-    public UserAccount(String username, String fullName, String password, String email) {
+    public UserAccount(String username, String fullName, String password, String email, BigDecimal balance) {
         this.username = username;
         this.fullName = fullName;
         this.password = password;
         this.email = email;
+        this.balance = balance == null ? BigDecimal.ZERO : balance;
     }
 
 }

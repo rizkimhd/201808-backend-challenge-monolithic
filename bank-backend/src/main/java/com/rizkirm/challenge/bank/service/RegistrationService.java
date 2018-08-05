@@ -4,6 +4,7 @@ import com.rizkirm.challenge.bank.persistence.domain.UserAccount;
 import com.rizkirm.challenge.bank.persistence.repository.UserAccountRepository;
 import com.rizkirm.challenge.bank.validator.RegistrationValidator;
 import com.rizkirm.challenge.bank.vo.RegistrationRequestVO;
+import com.rizkirm.challenge.bank.vo.RegistrationResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class RegistrationService extends RegistrationValidator {
     BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public String register(RegistrationRequestVO registrationRequestVO) {
+    public RegistrationResponseVO register(RegistrationRequestVO registrationRequestVO) {
         checkRequest(registrationRequestVO);
 
         UserAccount userAccount = userAccountRepository.findByUsernameOrEmail(
@@ -31,11 +32,12 @@ public class RegistrationService extends RegistrationValidator {
 
         if (userAccount == null) {
             userAccount = new UserAccount(registrationRequestVO.getUsername(), registrationRequestVO.getFullName(),
-                    passwordEncoder.encode(registrationRequestVO.getPassword()), registrationRequestVO.getEmail());
+                    passwordEncoder.encode(registrationRequestVO.getPassword()), registrationRequestVO.getEmail(),
+                    registrationRequestVO.getBalance());
 
             userAccountRepository.save(userAccount);
 
-            return "Successfully registered";
+            return new RegistrationResponseVO(userAccount.getAccountNumber(), userAccount.getBalance());
 
         } else {
             throw new RuntimeException("Username/Email already used");
