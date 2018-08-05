@@ -28,6 +28,7 @@ public class TransactionHistoryVO {
         this.transactionTime = reformatType(transactionType);
         this.receiverName = receiverName;
         this.amount = amount;
+        this.transactionType = transactionType;
     }
 
     public static List<TransactionHistoryVO> constructList(List<TransactionHistory> transactionHistoryList) {
