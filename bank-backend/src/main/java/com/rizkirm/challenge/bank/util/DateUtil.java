@@ -12,7 +12,7 @@ import java.util.Date;
 public class DateUtil {
 
     public static final String YYYY_MM_DD = "yyyy-MM-dd";
-    public final static String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
+    public static final String YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
     public static final String YYYY_MM_DD_HHMMSS = "yyyy-MM-dd HH:mm:ss";
 
     public static String dateToString(Date date, String format) {
@@ -29,6 +29,14 @@ public class DateUtil {
         } catch (ParseException e) {
             throw new CustomBadRequestException("Format Date " + format + " ex: " + dateToString(new Date()));
         }
+    }
+
+    public static Date stringToDate(String date) {
+        return stringToDate(date, YYYY_MM_DD);
+    }
+
+    public static Date format(Date date, String format) {
+        return stringToDate(dateToString(date, format), format);
     }
 
 }

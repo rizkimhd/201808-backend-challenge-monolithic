@@ -2,8 +2,6 @@ package com.rizkirm.challenge.bank.vo;
 
 import lombok.Data;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 
 /**
@@ -12,7 +10,6 @@ import java.util.Date;
 @Data
 public class ResponseVO {
 
-    @Temporal(TemporalType.TIMESTAMP)
     protected Date timestamp;
 
     protected String message;
@@ -27,4 +24,5 @@ public class ResponseVO {
         this.message = message;
         this.result = result;
     }
+
 }

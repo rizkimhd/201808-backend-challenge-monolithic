@@ -70,8 +70,8 @@ public class TransactionController {
             @RequestHeader("Authorization") String token,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "limit", defaultValue = "15") Integer limit,
-            @RequestParam(value = "startDate", required = false) Long startDate,
-            @RequestParam(value = "endDate", required = false) Long endDate) {
+            @RequestParam(value = "from", required = false) Long startDate,
+            @RequestParam(value = "to", required = false) Long endDate) {
         Map<String, Object> pageMap = transactionService.getTransactionHistory(token, page, limit, startDate, endDate);
         return AbstractRequestHandler.getPageResult(pageMap);
     }

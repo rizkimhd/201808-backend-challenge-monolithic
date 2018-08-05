@@ -31,9 +31,17 @@ public abstract class AbstractRequestHandler {
                 responsePageVO.setElements(String.valueOf(resultMap.get(ConstantUtil.PageParameter.TOTAL_ELEMENTS)));
                 responsePageVO.setMessage(ConstantUtil.ResponseMessage.OK);
             }
-        } catch (Exception e) {
-            responsePageVO.setMessage(e.getMessage());
+        } catch (CustomBadRequestException e) {
+            responsePageVO.setMessage(ConstantUtil.ResponseMessage.BAD_REQUEST);
+            responsePageVO.setResult(e.getMessage());
+        } catch (CustomNotFoundException e) {
+            responsePageVO.setMessage(ConstantUtil.ResponseMessage.DATA_NOT_FOUND);
+            responsePageVO.setResult(e.getMessage());
+        } catch (CustomUnauthorizedException e) {
+            responsePageVO.setMessage(ConstantUtil.ResponseMessage.UNAUTHORIZED);
+            responsePageVO.setResult(e.getMessage());
         }
+
         return JsonUtil.getJsonResponse(responsePageVO);
     }
 

@@ -13,7 +13,8 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "USER_ACCOUNT",
         indexes = {
-                @Index(columnList = "USERNAME", name = "IDX_USERNAME", unique = true)
+                @Index(columnList = "USERNAME", name = "IDX_USERNAME", unique = true),
+                @Index(columnList = "EMAIL", name = "IDX_EMAIL", unique = true),
         })
 @DynamicUpdate
 @Data

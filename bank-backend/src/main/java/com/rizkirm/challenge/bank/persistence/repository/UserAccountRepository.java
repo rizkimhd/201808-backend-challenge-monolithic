@@ -13,7 +13,9 @@ public interface UserAccountRepository extends BaseRepository<UserAccount> {
 
     UserAccount findByUsername(String username);
 
-    UserAccount findByUsernameOrEmail(String username, String email);
+    boolean existsByUsername(String username);
+
+    boolean existsByEmail(String email);
 
     UserAccount findByAccountNumber(String accountNumber);
 

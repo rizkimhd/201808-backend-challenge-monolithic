@@ -29,4 +29,7 @@ public class ConstantUtil {
         public static final String DEPOSIT_FE = "Deposit";
     }
 
+    public static final class Regex {
+        public static final String EMAIL = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+    }
 }
