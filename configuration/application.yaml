@@ -1,0 +1,28 @@
+server:
+  port: 8888
+  connection-timeout: 10
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://127.0.0.1:5432/bank-backend
+    username: bank-backend
+    password: welcome1!
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      minimumIdle: 3
+      maximumPoolSize: 5
+      idleTimeout: 30000
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        temp.use_jdbc_metadata_defaults: false
+
+logging:
+  config: ../configuration/logback.xml
