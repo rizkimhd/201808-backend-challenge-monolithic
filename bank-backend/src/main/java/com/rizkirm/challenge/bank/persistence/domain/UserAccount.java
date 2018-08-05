@@ -48,7 +48,7 @@ public class UserAccount extends Base {
         this.fullName = fullName;
         this.password = password;
         this.email = email;
-        this.balance = balance == null ? BigDecimal.ZERO : balance;
+        this.balance = (balance == null || balance.compareTo(BigDecimal.ZERO) < 0) ? BigDecimal.ZERO : balance;
     }
 
     @PrePersist

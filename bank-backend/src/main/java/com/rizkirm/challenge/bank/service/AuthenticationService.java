@@ -48,8 +48,10 @@ public class AuthenticationService extends AuthenticationValidator {
 
         UserAccount userAccount = userAccountRepository.findByAccessTokenAndUsernameAndDisabledFalse(
                 token, logoutRequestVO.getUsername());
+
         userAccount.setAccessToken(null);
         userAccountRepository.save(userAccount);
+
         return "Successfully logged out";
     }
 
