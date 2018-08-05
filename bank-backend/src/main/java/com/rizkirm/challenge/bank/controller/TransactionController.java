@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 /**
@@ -68,8 +69,10 @@ public class TransactionController {
     public ResponseEntity<ResponsePageVO> getTransactionHistory(
             @RequestHeader("Authorization") String token,
             @RequestParam(value = "page", defaultValue = "0") Integer page,
-            @RequestParam(value = "limit", defaultValue = "15") Integer limit) {
-        Map<String, Object> pageMap = transactionService.getTransactionHistory(token, page, limit);
+            @RequestParam(value = "limit", defaultValue = "15") Integer limit,
+            @RequestParam(value = "startDate", required = false) Long startDate,
+            @RequestParam(value = "endDate", required = false) Long endDate) {
+        Map<String, Object> pageMap = transactionService.getTransactionHistory(token, page, limit, startDate, endDate);
         return AbstractRequestHandler.getPageResult(pageMap);
     }
 

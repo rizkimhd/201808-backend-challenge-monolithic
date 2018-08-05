@@ -40,13 +40,8 @@ public class UserAccount extends Base {
     @Column(name = "ACCESS_TOKEN", length = 36)
     private String accessToken;
 
-    @PrePersist
-    public void prePersist() {
-        super.prePersist();
-        this.accountNumber = new GeneratorUtil().generate10RandomDigits();
+    public UserAccount() {
     }
-
-    public UserAccount() { }
 
     public UserAccount(String username, String fullName, String password, String email, BigDecimal balance) {
         this.username = username;
@@ -54,6 +49,12 @@ public class UserAccount extends Base {
         this.password = password;
         this.email = email;
         this.balance = balance == null ? BigDecimal.ZERO : balance;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        super.prePersist();
+        this.accountNumber = new GeneratorUtil().generate10RandomDigits();
     }
 
 }

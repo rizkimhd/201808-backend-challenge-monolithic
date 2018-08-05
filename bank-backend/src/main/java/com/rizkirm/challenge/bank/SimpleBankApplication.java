@@ -10,14 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication
 public class SimpleBankApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SimpleBankApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SimpleBankApplication.class, args);
+    }
 
-	@Bean
+    @Bean
 
-	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }

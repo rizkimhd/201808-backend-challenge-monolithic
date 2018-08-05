@@ -15,12 +15,12 @@ import java.math.BigDecimal;
 public class TransactionValidator extends AuthenticationUtil {
 
     public void checkRequest(String token, TransactionRequestVO transactionRequestVO) {
-        if(isValidToken(token)) {
-            if(transactionRequestVO.getAmount() == null) {
+        if (isValidToken(token)) {
+            if (transactionRequestVO.getAmount() == null) {
                 throw new CustomBadRequestException("Transaction amount cannot be empty");
             }
 
-            if(transactionRequestVO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            if (transactionRequestVO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
                 throw new CustomBadRequestException("Transaction amount must be greater than zero");
             }
         } else {
@@ -29,16 +29,16 @@ public class TransactionValidator extends AuthenticationUtil {
     }
 
     public void checkRequest(String token, TransferRequestVO transferRequestVO) {
-        if(isValidToken(token)) {
-            if(StringUtils.isEmpty(transferRequestVO.getReceiverAccount())) {
+        if (isValidToken(token)) {
+            if (StringUtils.isEmpty(transferRequestVO.getReceiverAccount())) {
                 throw new CustomBadRequestException("Receiver account cannot be empty");
             }
 
-            if(transferRequestVO.getAmount() == null) {
+            if (transferRequestVO.getAmount() == null) {
                 throw new CustomBadRequestException("Transaction amount cannot be empty");
             }
 
-            if(transferRequestVO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            if (transferRequestVO.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
                 throw new CustomBadRequestException("Transaction amount must be greater than zero");
             }
         } else {

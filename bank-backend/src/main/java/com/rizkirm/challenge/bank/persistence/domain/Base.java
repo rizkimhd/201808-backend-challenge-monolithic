@@ -45,7 +45,8 @@ public abstract class Base implements Serializable {
     @Column(name = "DISABLED")
     private Boolean disabled;
 
-    public Base() { }
+    public Base() {
+    }
 
     @PrePersist
     public void prePersist() {

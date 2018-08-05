@@ -31,13 +31,19 @@ public class TransactionHistory extends Base {
     @Column(name = "TRANSACTION_AMOUNT")
     private BigDecimal amount;
 
-    public TransactionHistory() { }
+    @Column(name = "TRANSACTION_TYPE")
+    private String transactionType;
 
-    public TransactionHistory(UserAccount sender, String receiverAccount, String receiverName, BigDecimal amount) {
+    public TransactionHistory() {
+    }
+
+    public TransactionHistory(UserAccount sender, String receiverAccount, String receiverName,
+                              BigDecimal amount, String transactionType) {
         this.sender = sender;
         this.receiverAccount = receiverAccount;
         this.receiverName = receiverName;
         this.amount = amount;
+        this.transactionType = transactionType;
     }
 
 }

@@ -15,7 +15,7 @@ public class AuthenticationUtil {
 
     protected UserAccount getUser(String token) {
         UserAccount userAccount = userAccountRepository.findByAccessTokenAndDisabledFalse(token);
-        if(userAccount == null) {
+        if (userAccount == null) {
             throw new CustomUnauthorizedException();
         } else {
             return userAccount;

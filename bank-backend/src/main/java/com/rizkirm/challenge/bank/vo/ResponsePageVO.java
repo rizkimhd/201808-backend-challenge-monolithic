@@ -12,7 +12,8 @@ public class ResponsePageVO extends ResponseVO {
     private String pages;
     private String elements;
 
-    public ResponsePageVO() { }
+    public ResponsePageVO() {
+    }
 
     public ResponsePageVO(Date timestamp, String message, Object result, String pages, String elements) {
         this.timestamp = timestamp;

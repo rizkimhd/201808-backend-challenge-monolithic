@@ -19,7 +19,8 @@ public class ResponseVO {
 
     protected Object result;
 
-    public ResponseVO() { }
+    public ResponseVO() {
+    }
 
     public ResponseVO(Date timestamp, String message, Object result) {
         this.timestamp = timestamp;

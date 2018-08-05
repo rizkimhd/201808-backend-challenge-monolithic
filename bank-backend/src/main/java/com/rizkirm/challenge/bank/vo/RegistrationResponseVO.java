@@ -12,7 +12,8 @@ public class RegistrationResponseVO {
     public String accountNumber;
     public BigDecimal balance;
 
-    public RegistrationResponseVO() { }
+    public RegistrationResponseVO() {
+    }
 
     public RegistrationResponseVO(String accountNumber, BigDecimal balance) {
         this.accountNumber = accountNumber;

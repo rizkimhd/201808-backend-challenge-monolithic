@@ -12,7 +12,8 @@ public class TransactionResponseVO {
 
     private BigDecimal balance;
 
-    public TransactionResponseVO() { }
+    public TransactionResponseVO() {
+    }
 
     public TransactionResponseVO(BigDecimal balance) {
         this.balance = balance;

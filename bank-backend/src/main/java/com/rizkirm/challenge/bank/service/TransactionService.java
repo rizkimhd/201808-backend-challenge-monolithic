@@ -6,6 +6,7 @@ import com.rizkirm.challenge.bank.exception.CustomUnauthorizedException;
 import com.rizkirm.challenge.bank.persistence.domain.TransactionHistory;
 import com.rizkirm.challenge.bank.persistence.domain.UserAccount;
 import com.rizkirm.challenge.bank.persistence.repository.TransactionHistoryRepository;
+import com.rizkirm.challenge.bank.util.ConstantUtil;
 import com.rizkirm.challenge.bank.util.JsonUtil;
 import com.rizkirm.challenge.bank.validator.TransactionValidator;
 import com.rizkirm.challenge.bank.vo.*;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +47,7 @@ public class TransactionService extends TransactionValidator {
         userAccountRepository.save(userAccount);
 
         transactionHistoryRepository.save(new TransactionHistory(userAccount, userAccount.getAccountNumber(),
-                userAccount.getFullName(), transactionRequestVO.getAmount()));
+                userAccount.getFullName(), transactionRequestVO.getAmount(), ConstantUtil.TransactionType.WITHDRAWAL_DB));
 
         return new TransactionResponseVO(userAccount.getBalance());
     }
@@ -61,7 +63,7 @@ public class TransactionService extends TransactionValidator {
         userAccountRepository.save(userAccount);
 
         transactionHistoryRepository.save(new TransactionHistory(userAccount, userAccount.getAccountNumber(),
-                userAccount.getFullName(), transactionRequestVO.getAmount()));
+                userAccount.getFullName(), transactionRequestVO.getAmount(), ConstantUtil.TransactionType.DEPOSIT_DB));
 
         return new TransactionResponseVO(userAccount.getBalance());
     }
@@ -78,9 +80,9 @@ public class TransactionService extends TransactionValidator {
         }
 
         UserAccount receiver = userAccountRepository.findByAccountNumber(transferRequestVO.getReceiverAccount());
-        if(receiver == null) throw new CustomNotFoundException("Account not found");
-        if(receiver.getDisabled()) throw new CustomNotFoundException("Account has been suspended");
-        if(userAccount.equals(receiver)) throw new CustomBadRequestException("Cannot doTransfer money to yourself");
+        if (receiver == null) throw new CustomNotFoundException("Account not found");
+        if (receiver.getDisabled()) throw new CustomNotFoundException("Account has been suspended");
+        if (userAccount.equals(receiver)) throw new CustomBadRequestException("Cannot doTransfer money to yourself");
 
         userAccount.setBalance(senderBalance.subtract(transferRequestVO.getAmount()));
         userAccountRepository.save(userAccount);
@@ -90,19 +92,23 @@ public class TransactionService extends TransactionValidator {
         userAccountRepository.save(userAccount);
 
         transactionHistoryRepository.save(new TransactionHistory(userAccount, receiver.getAccountNumber(),
-                receiver.getFullName(), transferRequestVO.getAmount()));
+                receiver.getFullName(), transferRequestVO.getAmount(), ConstantUtil.TransactionType.WITHDRAWAL_DB));
 
         return new TransferResponseVO(receiver.getAccountNumber(), receiver.getFullName(),
                 transferRequestVO.getAmount(), userAccount.getBalance());
     }
 
-    public Map<String, Object> getTransactionHistory(String token, Integer page, Integer limit) {
-        if(isValidToken(token)) {
+    public Map<String, Object> getTransactionHistory(String token, Integer page, Integer limit,
+                                                     Long startDate, Long endDate) {
+        if (isValidToken(token)) {
             UserAccount userAccount = getUser(token);
             Pageable pageable = PageRequest.of(page, limit, new Sort(Sort.Direction.DESC, "createdDate"));
 
+            Date from = startDate == null ? userAccount.getCreatedDate() : new Date(startDate);
+            Date to = endDate == null ? new Date() : new Date(endDate);
+
             Page<TransactionHistory> transactionHistoryPage = transactionHistoryRepository
-                    .findBySender(userAccount, pageable);
+                    .findBySenderAndCreatedDateBetween(userAccount, from, to, pageable);
 
             List<TransactionHistory> transactionHistoryList = transactionHistoryPage.getContent();
             return JsonUtil.constructMapReturn(TransactionHistoryVO.constructList(transactionHistoryList),
