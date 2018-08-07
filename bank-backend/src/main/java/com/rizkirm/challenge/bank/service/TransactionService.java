@@ -92,7 +92,7 @@ public class TransactionService extends TransactionValidator {
         userAccountRepository.save(userAccount);
 
         transactionHistoryRepository.save(new TransactionHistory(userAccount, receiver.getAccountNumber(),
-                receiver.getFullName(), transferRequestVO.getAmount(), ConstantUtil.TransactionType.WITHDRAWAL_DB));
+                receiver.getFullName(), transferRequestVO.getAmount(), ConstantUtil.TransactionType.TRANSFER_DB));
 
         return new TransferResponseVO(receiver.getAccountNumber(), receiver.getFullName(),
                 transferRequestVO.getAmount(), userAccount.getBalance());
@@ -108,7 +108,7 @@ public class TransactionService extends TransactionValidator {
             Date to = endDate == null ? new Date() : new Date(endDate);
 
             Page<TransactionHistory> transactionHistoryPage = transactionHistoryRepository
-                    .findBySenderAndCreatedDateBetween(userAccount, from, to, pageable);
+                    .findBySenderAndCreatedDateBetween(userAccount, userAccount.getAccountNumber(), from, to, pageable);
 
             List<TransactionHistory> transactionHistoryList = transactionHistoryPage.getContent();
             return JsonUtil.constructMapReturn(TransactionHistoryVO.constructList(transactionHistoryList),
