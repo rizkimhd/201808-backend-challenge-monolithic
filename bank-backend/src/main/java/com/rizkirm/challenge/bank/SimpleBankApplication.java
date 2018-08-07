@@ -15,7 +15,6 @@ public class SimpleBankApplication {
     }
 
     @Bean
-
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
