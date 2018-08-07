@@ -18,12 +18,14 @@ public class TransactionHistoryVO {
     private String transactionTime;
     private String transactionType;
     private String receiverName;
+    private String senderName;
     private BigDecimal amount;
 
     public TransactionHistoryVO() {
     }
 
-    public TransactionHistoryVO(Date transactionTime, String receiverName, BigDecimal amount, String transactionType) {
+    public TransactionHistoryVO(Date transactionTime, String receiverName, String senderName,
+                                BigDecimal amount, String transactionType) {
         this.transactionTime = DateUtil.dateToString(transactionTime, DateUtil.YYYY_MM_DD_HHMMSS);
         this.transactionType = reformatType(transactionType);
         this.receiverName = receiverName;
@@ -34,8 +36,8 @@ public class TransactionHistoryVO {
         List<TransactionHistoryVO> transactionHistoryVOList = new ArrayList<>();
         for (TransactionHistory transactionHistory : transactionHistoryList) {
             transactionHistoryVOList.add(new TransactionHistoryVO(transactionHistory.getCreatedDate(),
-                    transactionHistory.getReceiverName(), transactionHistory.getAmount(),
-                    transactionHistory.getTransactionType()));
+                    transactionHistory.getReceiverName(), transactionHistory.getSender().getFullName(),
+                    transactionHistory.getAmount(), transactionHistory.getTransactionType()));
         }
         return transactionHistoryVOList;
     }

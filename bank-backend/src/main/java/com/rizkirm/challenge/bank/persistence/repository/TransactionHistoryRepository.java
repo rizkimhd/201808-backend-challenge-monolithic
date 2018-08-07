@@ -22,6 +22,6 @@ public interface TransactionHistoryRepository extends BaseRepository<Transaction
     Page<TransactionHistory> findBySenderAndCreatedDateBetween(
             @Param("sender") UserAccount userAccount, @Param("accountNumber") String accountNumber,
             @Param("from") Date from, @Param("to") Date
-            to,
+                    to,
             Pageable pageable);
 }
