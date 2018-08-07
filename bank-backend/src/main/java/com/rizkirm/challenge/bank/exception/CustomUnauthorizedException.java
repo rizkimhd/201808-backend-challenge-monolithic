@@ -8,6 +8,5 @@ public class CustomUnauthorizedException extends RuntimeException {
     public CustomUnauthorizedException() {
         super("Invalid credentials");
     }
-
-
+    
 }
