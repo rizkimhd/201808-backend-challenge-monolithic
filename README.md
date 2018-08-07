@@ -17,7 +17,7 @@ o Deposit Money
 o Withdraw Money 
 o Retrieve Transaction History 
 
-## How to Run
+## How to Run 
 o Install Maven (https://maven.apache.org/install.html) 
 o Install PostgreSQL (http://postgresguide.com/setup/install.html) 
 o Create User in PostgreSQL with credentials: bank-backend/welcome1! (as defined in configuration/application.yaml) 
